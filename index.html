@@ -6,6 +6,7 @@
     <title>Valentine Surprise</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* All previous CSS remains unchanged */
         body {
             font-family: 'Dancing Script', cursive;
             background: linear-gradient(135deg, #ffe6f0, #ffb3d9);
@@ -121,6 +122,16 @@
             font-size: 20px;
             animation: float 3s linear infinite;
         }
+        .play-music-btn {
+            background: #ffb3d9;
+            color: #d63384;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        .play-music-btn:hover {
+            background: #ff69b4;
+            color: white;
+        }
         @keyframes wiggle {
             0%, 100% { transform: rotate(0deg); }
             25% { transform: rotate(-5deg); }
@@ -165,6 +176,7 @@
         <div class="envelope" id="envelope">
             <div class="message">Hiii!!, Remember there is no going back now</div>
         </div>
+        <button class="play-music-btn" id="playMusicBtn">🎵 Play Romantic Music</button>
     </div>
     
     <!-- Page 2: Opened Envelope with Question -->
@@ -188,7 +200,15 @@
         </div>
     </div>
 
+    <!-- Background Audio -->
+    <audio id="bgMusic" loop preload="auto" volume="0.2">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+        <!-- Fallback: Replace with your own audio URL, e.g., a romantic MP3 -->
+        Your browser does not support the audio element.
+    </audio>
+
     <script>
+        // All previous JavaScript remains unchanged
         // Floating hearts animation
         function createHeart() {
             const heart = document.createElement('div');
@@ -226,6 +246,13 @@
         document.getElementById('yesBtn').addEventListener('click', function() {
             document.getElementById('page2').classList.remove('active');
             document.getElementById('page3').classList.add('active');
+        });
+
+        // Play music button
+        document.getElementById('playMusicBtn').addEventListener('click', function() {
+            const audio = document.getElementById('bgMusic');
+            audio.play().catch(e => console.log('Autoplay blocked, user interaction needed.'));
+            this.style.display = 'none'; // Hide button after playing
         });
     </script>
 </body>
